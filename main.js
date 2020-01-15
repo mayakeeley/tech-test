@@ -22,6 +22,18 @@ const createMinefield = (rows, columns) => {
 
 createMinefield(15, 15);
 
+const generateClues = (rows, columns, rowId, colId) => {
+  for (let y = rowId - 1; y <= rowId + 1; y++) {
+    for (let x = colId - 1; x <= colId + 1; x++) {
+      let cellId = `y${y}x${x}`;
+      let cell = document.getElementById(cellId);
+      if (x >= 0 && x < columns && y >= 0 && y < rows && !cell.classList.contains("mine")) {
+        cell.innerHTML = 1;
+      }
+    }
+  }
+}
+
 const generateMines = (rows, columns, mines) => {
   if(mines < rows * columns) {
     let x = 0;
@@ -36,6 +48,7 @@ const generateMines = (rows, columns, mines) => {
       } 
       cell.classList.add("mine");
       cell.innerHTML = "X";
+      generateClues(rows, columns, rowId, colId);
       x++;
     }
   } else {
@@ -44,13 +57,3 @@ const generateMines = (rows, columns, mines) => {
 }
 
 generateMines(15, 15, 30);
-
-const generateClues = (rows, columns) => {
-  let allMineCells = document.querySelectorAll(".mine");
-  let allMineIds = [];
-  allMineCells.forEach(cell => {
-    allMineIds.push(cell.id);
-  })
-}
-
-generateClues(15, 15);
