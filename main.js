@@ -18,7 +18,7 @@ const createMinefield = (rows, columns) => {
     table.appendChild(tr);
   }
   return gameArea.appendChild(table);
-}
+};
 
 createMinefield(15, 15);
 
@@ -27,15 +27,21 @@ const generateClues = (rows, columns, rowId, colId) => {
     for (let x = colId - 1; x <= colId + 1; x++) {
       let cellId = `y${y}x${x}`;
       let cell = document.getElementById(cellId);
-      if (x >= 0 && x < columns && y >= 0 && y < rows && !cell.classList.contains("mine")) {
+      if (
+        x >= 0 &&
+        x < columns &&
+        y >= 0 &&
+        y < rows &&
+        !cell.classList.contains("mine")
+      ) {
         cell.innerHTML = +cell.innerHTML + 1;
       }
     }
   }
-}
+};
 
 const generateMines = (rows, columns, mines) => {
-  if(mines < rows * columns) {
+  if (mines < rows * columns) {
     let x = 0;
     while (x < mines) {
       let rowId = Math.floor(Math.random() * rows);
@@ -45,15 +51,15 @@ const generateMines = (rows, columns, mines) => {
 
       if (cell.classList.contains("mine")) {
         continue;
-      } 
+      }
       cell.classList.add("mine");
       cell.innerHTML = "X";
       generateClues(rows, columns, rowId, colId);
       x++;
     }
   } else {
-    alert("The number of mines exceeds the number of cells!")
+    alert("The number of mines exceeds the number of cells!");
   }
-}
+};
 
 generateMines(15, 15, 30);
