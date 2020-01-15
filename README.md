@@ -23,8 +23,9 @@ Generate Clues:
 Find each cell with a mine in it
 Find all surrounding cell IDs for each mine cell
 Add a marker in each of these cells to check if the clues are being generated in the correct places
-Add a counter so that if there are multiple mines in the surrounding cells, the clue will increase in number
+Add 1 to the cell each time (need to convert the innerHTML to a number to increase the number by 1 if a clue already exists in the cell)
 By adding clues based on the placement of the mines, it will produce a more efficient solution than checking each cell for surrounding mines
 
 Add form:
 Allow the user to input the number of rows, columns and mines to generate the grid
+Take the value of each input and generate grid, clues and mines on click of button

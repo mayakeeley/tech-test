@@ -1,26 +1,8 @@
 const gameArea = document.getElementById("gameArea");
-
-const createMinefield = (rows, columns) => {
-  let table, tr, td;
-  gameArea.innerHTML = "";
-
-  table = document.createElement("table");
-
-  for (let row = 0; row < rows; row++) {
-    tr = document.createElement("tr");
-
-    for (let column = 0; column < columns; column++) {
-      td = document.createElement("td");
-      td.id = `y${row}x${column}`;
-      tr.appendChild(td);
-    }
-
-    table.appendChild(tr);
-  }
-  return gameArea.appendChild(table);
-};
-
-createMinefield(15, 15);
+const button = document.getElementById("button");
+const rowInput = document.getElementById("rows");
+const columnInput = document.getElementById("columns");
+const mineInput = document.getElementById("mines");
 
 const generateClues = (rows, columns, rowId, colId) => {
   for (let y = rowId - 1; y <= rowId + 1; y++) {
@@ -62,4 +44,33 @@ const generateMines = (rows, columns, mines) => {
   }
 };
 
-generateMines(15, 15, 30);
+const createMinefield = (rows, columns) => {
+  let table, tr, td;
+  gameArea.innerHTML = "";
+
+  table = document.createElement("table");
+
+  for (let row = 0; row < rows; row++) {
+    tr = document.createElement("tr");
+
+    for (let column = 0; column < columns; column++) {
+      td = document.createElement("td");
+      td.id = `y${row}x${column}`;
+      tr.appendChild(td);
+    }
+
+    table.appendChild(tr);
+  }
+  return gameArea.appendChild(table);
+};
+
+const startGame = () => {
+  let rows = +rowInput.value;
+  let columns = +columnInput.value;
+  let mines = +mineInput.value;
+
+  createMinefield(rows, columns);
+  generateMines(rows, columns, mines);
+};
+
+button.addEventListener("click", startGame);
