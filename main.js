@@ -28,7 +28,7 @@ const generateClues = (rows, columns, rowId, colId) => {
       let cellId = `y${y}x${x}`;
       let cell = document.getElementById(cellId);
       if (x >= 0 && x < columns && y >= 0 && y < rows && !cell.classList.contains("mine")) {
-        cell.innerHTML = 1;
+        cell.innerHTML = +cell.innerHTML + 1;
       }
     }
   }
